@@ -44,8 +44,10 @@
             <!-- /.aside -->
             <section id="content">
               <section class="vbox">
-                <section class="bg-white scrollable padder" style="padding-bottom:80px;" ng-view>
-                  
+                <section class="bg-white scrollable padder" style="padding-bottom:80px;">
+                  <h3>{{pageTitle}}</h3>
+                  <hr>
+                  <div ng-view></div>
                 </section>
               </section>
               <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen, open" data-target="#nav,html"></a>

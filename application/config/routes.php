@@ -53,6 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['api/player/get'] = 'api/api_player/get';
+$route['api/player/get']           = 'api/api_player/get';
+$route['api/player/detail/(:any)'] = 'api/api_player/detail/$1';
 
 $route['cms'] = 'cms/snk_cms/index';

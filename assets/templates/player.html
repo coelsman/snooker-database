@@ -1,3 +1,44 @@
 <div ng-controller="PlayerCtrl">
-	22
+	<div class="row form-group">
+		<div class="col-sm-3">
+			<select class="form-control" ng-model="filter.country">
+				<option value="">Filter by country</option>
+				<option ng-repeat="country in countries">
+					{{country.name}}
+				</option>
+			</select>
+		</div>
+	</div>
+	<table class="table table-bordered table-hover table-striped"
+		ng-table="tableParams"
+		
+		show-filter="false">
+		<!-- ng-table-columns-binding="table.cols" -->
+		<tr ng-repeat="row in $data">
+			<td 
+				title="'Player Name'" 
+				sortable="'full_name'">
+				{{row.full_name}}</td>
+			<td 
+				title="'Nationality'" 
+				sortable="'nationality'">
+				{{countries[row.nationality].name}}</td>
+			<td 
+				title="'Nationality'" 
+				sortable="'year_of_birth'">
+				{{row.year_of_birth}}</td>
+			<td 
+				title="'Career Status'" 
+				sortable="'career_status'">
+				{{row.career_status}}</td>
+			<td 
+				width="35%"
+				title="'Actions'">
+				<a ng-href="{{cmsUrl('player/' + row.uuid)}}" class="btn btn-sm btn-info">Modify</a>
+			</td>
+		</tr>
+		<tr ng-if="$data.length == 0">
+			<td colspan="9">No data available</td>
+		</tr>
+	</table>
 </div>

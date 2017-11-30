@@ -15,4 +15,10 @@ class API_Player extends SNK_Api {
 		// die;
 		echo json_encode($this->Players_m->filter());
 	}
+
+	public function detail ($uuid) {
+		// echo Uuid::uuid4()->toString();
+		// die;
+		echo json_encode($this->Players_m->detailByUuid($uuid));
+	}
 }

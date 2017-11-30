@@ -1,13 +1,55 @@
-app.controller('PlayerCtrl', ['$q', '$scope', '$http', 'PlayerFactory', function ($q, $scope, $http, PlayerFactory) {
+app.controller('PlayerCtrl', ['$q', '$rootScope', '$scope', '$http', 'AppService', 'PlayerFactory', 'CountryFactory', 'NgTableParams',
+	function ($q, $rootScope, $scope, $http, AppService, PlayerFactory, CountryFactory, NgTableParams) {
+
+	AppService.safeApply($scope, function () {
+		$rootScope.pageTitle = 'Player Management';
+	});
+
 	$scope.getPlayers = function () {
 		PlayerFactory.get().then(function (json) {
-			console.log(json);
+			$scope.tableParams = new NgTableParams({
+				count: 20
+			}, {
+				total: json.data.length,
+				dataset: json.data,
+			});
 		});
 	};
 
 	$q.all([
+		CountryFactory.get(),
 		$scope.getPlayers()
-	]);
+	]).then(function (jsonCountry) {
+		AppService.safeApply($scope, function () {
+			$scope.countries = jsonCountry[0].data;
+		});
+	});
+}]);
 
-	console.log(2);
+app.controller('PlayerDetailsCtrl', ['$q', '$routeParams', '$rootScope', '$scope', '$http', 'AppService', 'PlayerFactory', 'CountryFactory', 'NgTableParams',
+	function ($q, $routeParams, $rootScope, $scope, $http, AppService, PlayerFactory, CountryFactory, NgTableParams) {
+
+	AppService.safeApply($scope, function () {
+		$rootScope.pageTitle = 'Player Details';
+	});
+
+	$scope.getPlayers = function () {
+		PlayerFactory.detail($routeParams.uuid).then(function (json) {
+			AppService.safeApply($scope, function () {
+				$scope.playerObject = json.data;
+				$scope.playerObject.year_of_birth = parseInt($scope.playerObject.year_of_birth);
+				$scope.playerObject.century_breaks = parseInt($scope.playerObject.century_breaks);
+				$scope.playerObject.highest_ranking = parseInt($scope.playerObject.highest_ranking);
+			});
+		});
+	};
+
+	$q.all([
+		CountryFactory.get(),
+		$scope.getPlayers()
+	]).then(function (jsonCountry) {
+		AppService.safeApply($scope, function () {
+			$scope.countries = jsonCountry[0].data;
+		});
+	});
 }]);
