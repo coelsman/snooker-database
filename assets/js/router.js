@@ -12,6 +12,9 @@ app.config(['$routeProvider', function($routeProvider) {
 		when('/tournament', {
 			templateUrl: baseUrl + 'assets/templates/tournament.html',
 		}).
+		when('/tournament/add', {
+			templateUrl: baseUrl + 'assets/templates/tournament-detail.html',
+		}).
 		otherwise({
 			redirectTo: 'player'
 		});

@@ -54,6 +54,7 @@ class Players_m extends CI_Model {
 	}
 
 	public function update ($uuid, $data) {
+		echo Uuid::uuid4()->toString(); die;
 		$playerObject = $this->detailByUuid($uuid);
 
 		$this->db->trans_start();

@@ -1,3 +1,14 @@
 <div ng-controller="TournamentCtrl">
-	
+	<div class="row">
+		<div class="col-sm-3">
+			<select class="form-control">
+				<option value="">Filter by season</option>
+				<option ng-repeat="season in seasons" value="{{season.uuid}}">{{season.name}}</option>
+			</select>
+		</div>
+
+		<div class="col-sm-9">
+			<a ng-href="{{cmsUrl('tournament/add')}}" class="btn btn-success">Create Tournament</a>
+		</div>
+	</div>
 </div>
