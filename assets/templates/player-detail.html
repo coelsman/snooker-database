@@ -5,13 +5,13 @@
 
 			<div class="form-group">
 				<label>Full Name</label>
-				<input type="text" class="form-control" name="" ng-model="playerObject.full_name">
+				<input type="text" class="form-control" name="" ng-model="playerObject.full_name" required>
 			</div>
 
 			<div class="form-group">
 				<label>Nationality</label>
-				<select class="form-control" ng-model="playerObject.nationality">
-					<option ng-repeat="(k, country) in countries" ng-selected="k == playerObject.nationality">
+				<select class="form-control" ng-model="playerObject.nationality" required>
+					<option ng-repeat="(k, country) in countries" ng-selected="k == playerObject.nationality" value="{{k}}">
 						{{country.name}}
 					</option>
 				</select>
@@ -33,8 +33,8 @@
 
 			<div class="form-group">
 				<label>Career Status</label>
-				<select class="form-control">
-					
+				<select class="form-control" ng-model="playerObject.career_status">
+					<option ng-repeat="v in careerStatuses" ng-selected="v == playerObject.career_status" value="{{v}}">{{v}}</option>
 				</select>
 			</div>
 
@@ -47,6 +47,12 @@
 				<label>Highest ranking</label>
 				<input type="number" class="form-control" name="" ng-model="playerObject.highest_ranking">
 			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<button type="button" class="btn btn-success" ng-click="savePlayer();">Save changes</button>
 		</div>
 	</div>
 </div>

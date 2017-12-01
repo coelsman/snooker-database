@@ -4,8 +4,8 @@
     <!-- nav -->
     <nav class="nav-primary hidden-xs">
       <ul class="nav">
-        <li class="active">
-          <a href="cms/dashboard.html" class="active">
+        <li class="">
+          <a ng-href="{{cmsUrl('player')}}" class="">
             <i class="fa fa-dashboard icon">
               <b class="bg-primary"></b>
             </i>
@@ -13,7 +13,20 @@
               <i class="fa fa-angle-down text"></i>
               <i class="fa fa-angle-up text-active"></i>
             </span> -->
-            <span>Dashboard</span>
+            <span>Players</span>
+          </a>
+        </li>
+
+        <li class="">
+          <a ng-href="{{cmsUrl('tournament')}}" class="">
+            <i class="fa fa-dashboard icon">
+              <b class="bg-primary"></b>
+            </i>
+            <!-- <span class="pull-right">
+              <i class="fa fa-angle-down text"></i>
+              <i class="fa fa-angle-up text-active"></i>
+            </span> -->
+            <span>Tournaments</span>
           </a>
         </li>
       </ul>

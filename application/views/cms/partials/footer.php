@@ -17,3 +17,4 @@
 <script src="assets/js/services/player.js"></script>
 <script src="assets/js/router.js"></script>
 <script src="assets/js/controllers/player.js"></script>
+<script src="assets/js/controllers/tournament.js"></script>

@@ -33,6 +33,7 @@ CREATE TABLE `snk_tournaments_seasons` (
 	`tournament_id` int NOT NULL,
 	`season_id` int NOT NULL DEFAULT 0,
 	`tournament_type` int NOT NULL DEFAULT 0,
+	`venue` longtext,
 	`prize_funds` longtext
 ) charset=utf8 engine=MyISAM;
 

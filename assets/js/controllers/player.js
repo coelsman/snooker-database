@@ -31,17 +31,30 @@ app.controller('PlayerDetailsCtrl', ['$q', '$routeParams', '$rootScope', '$scope
 
 	AppService.safeApply($scope, function () {
 		$rootScope.pageTitle = 'Player Details';
+		$scope.careerStatuses = PlayerFactory.careerStatuses;
 	});
 
 	$scope.getPlayers = function () {
-		PlayerFactory.detail($routeParams.uuid).then(function (json) {
-			AppService.safeApply($scope, function () {
-				$scope.playerObject = json.data;
-				$scope.playerObject.year_of_birth = parseInt($scope.playerObject.year_of_birth);
-				$scope.playerObject.century_breaks = parseInt($scope.playerObject.century_breaks);
-				$scope.playerObject.highest_ranking = parseInt($scope.playerObject.highest_ranking);
+		if (!isUndefined($routeParams.uuid)) {
+			PlayerFactory.detail($routeParams.uuid).then(function (json) {
+				AppService.safeApply($scope, function () {
+					$scope.playerObject = json.data;
+					$scope.playerObject.year_of_birth = parseInt($scope.playerObject.year_of_birth);
+					$scope.playerObject.century_breaks = parseInt($scope.playerObject.century_breaks);
+					$scope.playerObject.highest_ranking = parseInt($scope.playerObject.highest_ranking);
+				});
 			});
-		});
+		} else {
+			$scope.playerObject = {};
+		}
+	};
+
+	$scope.savePlayer = function () {
+		if (isUndefined($routeParams.uuid)) {
+			PlayerFactory.insert($scope.playerObject);
+		} else {
+			PlayerFactory.update($routeParams.uuid, $scope.playerObject);
+		}
 	};
 
 	$q.all([

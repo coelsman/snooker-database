@@ -49,11 +49,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+$uuidRegex = '\w{8}-\w{4}-\w{4}-\w{4}-\w{12}';
+
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['api/player/get']           = 'api/api_player/get';
-$route['api/player/detail/(:any)'] = 'api/api_player/detail/$1';
+$route["api/player"]['GET']               = 'api/api_player/get';
+$route["api/player"]['POST']              = 'api/api_player/insert';
+$route["api/player/($uuidRegex)"]['GET']  = 'api/api_player/detail/$1';
+$route["api/player/($uuidRegex)"]['POST'] = 'api/api_player/update/$1';
 
 $route['cms'] = 'cms/snk_cms/index';

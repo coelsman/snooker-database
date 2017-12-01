@@ -3,8 +3,14 @@ app.config(['$routeProvider', function($routeProvider) {
 		when('/player', {
 			templateUrl: baseUrl + 'assets/templates/player.html',
 		}).
+		when('/player/add', {
+			templateUrl: baseUrl + 'assets/templates/player-detail.html',
+		}).
 		when('/player/:uuid', {
 			templateUrl: baseUrl + 'assets/templates/player-detail.html',
+		}).
+		when('/tournament', {
+			templateUrl: baseUrl + 'assets/templates/tournament.html',
 		}).
 		otherwise({
 			redirectTo: 'player'
