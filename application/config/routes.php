@@ -60,4 +60,7 @@ $route["api/player"]['POST']              = 'api/api_player/insert';
 $route["api/player/($uuidRegex)"]['GET']  = 'api/api_player/detail/$1';
 $route["api/player/($uuidRegex)"]['POST'] = 'api/api_player/update/$1';
 
+$route["api/season"]['GET']               = 'api/api_season/get';
+$route["api/season"]['POST']              = 'api/api_season/insert';
+
 $route['cms'] = 'cms/snk_cms/index';

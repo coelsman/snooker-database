@@ -5,6 +5,7 @@ USE `snooker_db`;
 DROP TABLE IF EXISTS `snk_seasons`;
 CREATE TABLE `snk_seasons` (
 	`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`uuid` varchar(64) NOT NULL,
 	`name` varchar(1024)
 ) charset=utf8 engine=MyISAM;
 
@@ -24,6 +25,7 @@ INSERT INTO `snk_tournament_types` VALUES
 DROP TABLE IF EXISTS `snk_tournaments`;
 CREATE TABLE `snk_tournaments` (
 	`id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`uuid` varchar(64) NOT NULL,
 	`name` varchar(1024)
 ) charset=utf8 engine=MyISAM;
 
@@ -33,6 +35,7 @@ CREATE TABLE `snk_tournaments_seasons` (
 	`tournament_id` int NOT NULL,
 	`season_id` int NOT NULL DEFAULT 0,
 	`tournament_type` int NOT NULL DEFAULT 0,
+	`alias` varchar(1024),
 	`venue` longtext,
 	`prize_funds` longtext
 ) charset=utf8 engine=MyISAM;

@@ -14,6 +14,8 @@
 <script src="assets/js/script.js"></script>
 <script src="assets/js/services/app.js"></script>
 <script src="assets/js/services/country.js"></script>
+<script src="assets/js/services/season.js"></script>
+<script src="assets/js/services/tournament.js"></script>
 <script src="assets/js/services/player.js"></script>
 <script src="assets/js/router.js"></script>
 <script src="assets/js/controllers/player.js"></script>
