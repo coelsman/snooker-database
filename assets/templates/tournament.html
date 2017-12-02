@@ -1,7 +1,7 @@
 <div ng-controller="TournamentCtrl">
-	<div class="row">
+	<div class="row form-group">
 		<div class="col-sm-3">
-			<select class="form-control">
+			<select class="form-control" ng-model="filter.season" ng-change="filterTournament();">
 				<option value="">Filter by season</option>
 				<option ng-repeat="season in seasons" value="{{season.uuid}}">{{season.name}}</option>
 			</select>
@@ -10,5 +10,53 @@
 		<div class="col-sm-9">
 			<a ng-href="{{cmsUrl('tournament/add')}}" class="btn btn-success">Create Tournament</a>
 		</div>
+	</div>
+
+	<div ng-if="!filter.season">
+		<table class="table table-bordered table-hover table-striped"
+			ng-table="tableParams">
+			<!-- ng-table-columns-binding="table.cols" -->
+			<tr ng-repeat="row in $data">
+				<td 
+					title="'Tournament Name'" 
+					sortable="'name'">
+					{{row.name}}</td>
+				<td 
+					width="35%"
+					title="'Actions'">
+					<a ng-href="{{cmsUrl('tournament/' + row.uuid)}}" class="btn btn-sm btn-info">Modify</a>
+					<a ng-href="{{cmsUrl('tournament/' + row.uuid + '/season')}}" class="btn btn-sm btn-default">Seasons</a>
+				</td>
+			</tr>
+			<tr ng-if="$data.length == 0">
+				<td colspan="2">No data available</td>
+			</tr>
+		</table>
+	</div>
+
+	<div ng-if="filter.season">
+		<table class="table table-bordered table-hover table-striped"
+			ng-table="tableParams">
+			<!-- ng-table-columns-binding="table.cols" -->
+			<tr ng-repeat="row in $data">
+				<td 
+					title="'Tournament'" 
+					sortable="'alias'">
+					{{row.alias}}</td>
+				<td 
+					title="'Type'" 
+					sortable="'tournament_type'">
+					{{tournamentTypes[row.tournament_type]}}</td>
+				<td 
+					width="35%"
+					title="'Actions'">
+					<a ng-href="{{cmsUrl('tournament/'+ row.tournament_uuid +'/season/' + row.season_uuid)}}" class="btn btn-sm btn-default">Modify</a>
+					<a ng-href="{{cmsUrl('tournament/'+ row.tournament_uuid +'/season/' + row.season_uuid + '/player')}}" class="btn btn-sm btn-primary">Players</a>
+				</td>
+			</tr>
+			<tr ng-if="$data.length == 0">
+				<td colspan="2">No data available</td>
+			</tr>
+		</table>
 	</div>
 </div>

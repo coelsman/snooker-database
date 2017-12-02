@@ -11,4 +11,8 @@ class API_Season extends SNK_Api {
 	public function get () {
 		echo json_encode($this->Seasons_m->get());
 	}
+
+	public function tournament ($seasonUuid = '') {
+		echo json_encode($this->Seasons_m->filterTournament($seasonUuid));
+	}
 }

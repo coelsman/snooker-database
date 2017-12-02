@@ -23,7 +23,7 @@ class Seasons_m extends CI_Model {
 	public function getIdByUuid ($uuid) {
 		$obj = $this->getByUuid($uuid);
 
-		return $obj ? $obj->uuid : null;
+		return $obj ? $obj->id : null;
 	}
 
 	public function getTournaments ($uuid) {
@@ -38,5 +38,19 @@ class Seasons_m extends CI_Model {
 		$obj->tournaments = $tournaments;
 
 		return $obj;
+	}
+
+	public function filterTournament ($uuid) {
+		$seasonId = $this->getIdByUuid($uuid);
+
+		if ($seasonId) {
+			return $this->db
+				->select('T.uuid tournament_uuid, S.uuid season_uuid, TS.alias, T.name, TS.tournament_type, TS.venue')
+				->from('tournaments_seasons TS')
+				->join('tournaments T', 'T.id = TS.tournament_id')
+				->join('seasons S', 'S.id = TS.season_id')
+				->where('TS.season_id', $seasonId)
+				->get()->result();
+		} else return array();
 	}
 }

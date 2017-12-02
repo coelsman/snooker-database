@@ -1,0 +1,56 @@
+<div ng-controller="TournamentSeasonCtrl">
+	<div class="row form-group">
+		<div class="col-sm-3">
+			<select class="form-control" ng-model="filter.season">
+				<option value="">Choose season</option>
+				<option ng-repeat="season in seasons" value="{{season.uuid}}">{{season.name}}</option>
+			</select>
+		</div>
+
+		<div class="col-sm-3">
+			<button class="btn btn-primary" ng-disabled="filter.season == undefined" ng-click="getTournamentSeason();">Get tournament season details</button>
+		</div>
+	</div>
+	<hr>
+
+	<div ng-if="tournamentSeasonObject">
+		<div class="clearfix">
+			<h4>{{tournamentSeasonObject.name}}</h4>
+			<button class="btn btn-success pull-right" ng-click="saveTournamentSeason();">Save changes</button>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label><b>Alias</b></label>
+					<input type="text" class="form-control" ng-model="tournamentSeasonObject.alias">
+				</div>
+
+				<div class="form-group">
+					<label><b>Venue</b></label>
+					<input type="text" class="form-control" ng-model="tournamentSeasonObject.venue">
+				</div>
+
+				<div class="form-group">
+					<label><b>Tournament Type</b></label>
+					<select class="form-control" ng-model="tournamentSeasonObject.tournament_type">
+						<option value="0">Choose type</option>
+						<option ng-repeat="type in tournamentTypes" ng-selected="type.id == tournamentSeasonObject.tournament_type" value="{{type.id}}">{{type.name}}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="">
+					<label><b>Prize Funds</b></label>
+					<div class="row form-group" ng-repeat="lv in rankings">
+						<div class="col-xs-6">{{lv.name}}</div>
+						<div class="col-xs-6">
+							<input type="text" class="form-control" ng-model="tournamentSeasonObject.prize_funds[lv.id]">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<div ng-controller="TournamentSeasonPlayerCtrl">
+	<div class="row">
+		<h4 class="col-xs-12">Add player to Tournament</h4>
+		<div class="col-sm-3">
+			<select class="form-control" ng-model="insert.player">
+				<option value="">Choose Player</option>
+				<option ng-repeat="player in players" ng-value="player.uuid">{{player.full_name}}</option>
+			</select>
+		</div>
+
+		<div class="col-sm-3">
+			<select class="form-control" ng-model="insert.ranking">
+				<option value="">Choose Player Ranking</option>
+				<option ng-repeat="ranking in rankings" ng-value="ranking.id">{{ranking.name}}</option>
+			</select>
+		</div>
+
+		<div class="col-sm-3">
+			<button class="btn btn-primary" ng-click="addTournamentPlayer()">Add</button>
+		</div>
+	</div>
+</div>

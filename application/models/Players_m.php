@@ -21,6 +21,19 @@ class Players_m extends CI_Model {
 			->get()->row();
 	}
 
+	public function getByUuid ($uuid) {
+		return $this->db
+			->from('players')
+			->where('uuid', $this->db->escape_str($uuid))
+			->get()->row();
+	}
+
+	public function getIdByUuid ($uuid) {
+		$obj = $this->getByUuid($uuid);
+
+		return $obj ? $obj->id : null;
+	}
+
 	public function insert ($data) {
 		$this->db->trans_start();
 		$dataPlayer = array(
@@ -54,7 +67,7 @@ class Players_m extends CI_Model {
 	}
 
 	public function update ($uuid, $data) {
-		echo Uuid::uuid4()->toString(); die;
+		// echo Uuid::uuid4()->toString(); die;
 		$playerObject = $this->detailByUuid($uuid);
 
 		$this->db->trans_start();

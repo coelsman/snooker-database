@@ -60,9 +60,22 @@ $route["api/player"]['POST']              = 'api/api_player/insert';
 $route["api/player/($uuidRegex)"]['GET']  = 'api/api_player/detail/$1';
 $route["api/player/($uuidRegex)"]['POST'] = 'api/api_player/update/$1';
 
-$route["api/season"]['GET']                         = 'api/api_season/get';
-$route["api/season"]['POST']                        = 'api/api_season/insert';
-$route["api/season/tournament"]['GET']              = 'api/api_season/tournament';
-$route["api/season/($uuidRegex)/tournament"]['GET'] = 'api/api_season/tournament/$1';
+$route["api/season"]['GET']                          = 'api/api_season/get';
+$route["api/season"]['POST']                         = 'api/api_season/insert';
+$route["api/season/tournament"]['GET']               = 'api/api_season/tournament';
+$route["api/season/($uuidRegex)/tournament"]['GET']  = 'api/api_season/tournament/$1';
+$route["api/season/($uuidRegex)/tournament"]['POST'] = 'api/api_season/add_tournament/$1';
+
+$route["api/tournament"]['GET']                                          = 'api/api_tournament/get';
+$route["api/tournament"]['POST']                                         = 'api/api_tournament/insert';
+$route["api/tournament/type"]['GET']                                     = 'api/api_tournament/get_type';
+$route["api/tournament/($uuidRegex)/season"]['GET']                      = 'api/api_tournament/season/$1';
+$route["api/tournament/($uuidRegex)/season/($uuidRegex)"]['GET']         = 'api/api_tournament/season/$1/$2';
+$route["api/tournament/($uuidRegex)/season/($uuidRegex)"]['POST']        = 'api/api_tournament/update_season/$1/$2';
+$route["api/tournament/season/($uuidRegex)"]['POST']                     = 'api/api_tournament/insert_season/$2';
+$route["api/tournament/($uuidRegex)/season/($uuidRegex)/player"]['GET']  = 'api/api_tournament/player/$1/$2';
+$route["api/tournament/($uuidRegex)/season/($uuidRegex)/player"]['POST'] = 'api/api_tournament/update_player/$1/$2';
+
+$route["api/ranking/round"]['GET'] = 'api/api_ranking/get';
 
 $route['cms'] = 'cms/snk_cms/index';
